@@ -2,6 +2,7 @@ var crap = (function() {
   return {
     options: {
       load_cookies: false,
+      click_here: 'clicca qui',
       privacy_url: 'http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939',
       msg_before: 'Su questo sito utilizziamo cookie tecnici e, previo tuo consenso, cookie di profilazione, nostri e di terze parti, per proporti pubblicità in linea con le tue preferenze. Se vuoi saperne di più ',
       msg_after: '. Cliccando in un punto qualsiasi dello schermo, effettuando un’azione di scroll o chiudendo questo banner, invece, presti il consenso all’uso di tutti i cookie.'
@@ -70,7 +71,7 @@ var crap = (function() {
 
       _cookie_container.className = 'crap-mgmt-container';
       _cookie_privacy_link.href = this.options.privacy_url;
-      _cookie_privacy_link.innerText = 'clicca qui';
+      _cookie_privacy_link.innerText = this.options.click_here;
       _cookie_agree_link.innerText = 'OK';
 
       _cookie_container.appendChild(_cookie_text_bef);
