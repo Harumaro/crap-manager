@@ -69,7 +69,7 @@ var crap = (function() {
       var _cookie_agree_link = document.createElement('button');
 
       _cookie_container.className = 'crap-mgmt-container';
-      _cookie_privacy_link.href = 'http://www.google.com';
+      _cookie_privacy_link.href = this.options.privacy_url;
       _cookie_privacy_link.innerText = 'clicca qui';
       _cookie_agree_link.innerText = 'OK';
 
