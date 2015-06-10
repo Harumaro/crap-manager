@@ -6,10 +6,15 @@
   </head>
 
   <body>
-    <h1>Hello World!</h1>
-    <script src="crap-manager.js"></script>
+    <h1>Hello Plunker!</h1>
+    <script src="script.js"></script>
     <script type="text/javascript">
-      cookie_mgmt.init();
+      crap.init();
+
+      if(!crap.shouldBlockCookies()) {
+        alert('Me want cookie!');
+        location.href = 'https://www.youtube.com/watch?v=9PnbKL3wuH4';
+      }
     </script>
   </body>
 

@@ -1,10 +1,11 @@
-// Code goes here
-
-var cookie_mgmt = (function() {
+var crap = (function() {
   return {
     options: {
       load_cookies: true,
       privacy_url: 'http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939'
+    },
+    shouldBlockCookies: function() {
+      return !this.options.load_cookies;
     },
     supportsHtml5Storage: function() {
       try {
@@ -43,8 +44,8 @@ var cookie_mgmt = (function() {
     allowCookies: function(e) {
       e.stopPropagation();
       e.preventDefault();
-      
-      cookie_mgmt.supportsHtml5Storage() ? localStorage.setItem('load-cookies', false) : cookie_mgmt.setCookie('load-cookies', false, Infinity, '/', '', false);
+
+      crap.supportsHtml5Storage() ? localStorage.setItem('load-cookies', false) : crap.setCookie('load-cookies', false, Infinity, '/', '', false);
 
       if (e.type == 'click') {
         if(e.target.className == 'cookie-mgmt-container') {
@@ -65,7 +66,7 @@ var cookie_mgmt = (function() {
       var _cookie_privacy_link = document.createElement('a');
       var _cookie_agree_link = document.createElement('button');
 
-      _cookie_container.className = 'cookie-mgmt-container';
+      _cookie_container.className = 'crap-mgmt-container';
       _cookie_privacy_link.href = 'http://www.google.com';
       _cookie_privacy_link.innerText = 'clicca qui';
       _cookie_agree_link.innerText = 'OK';
@@ -89,5 +90,4 @@ var cookie_mgmt = (function() {
   }
 })();
 
-cookie_mgmt.options.load_cookies = cookie_mgmt.supportsHtml5Storage() ? localStorage.getItem('load-cookies') : cookie_mgmt.getCookie('load-cookies');
-//cookie_mgmt.options.load_cookies = cookie_mgmt.getCookie('load_cookies');
+crap.options.load_cookies = crap.supportsHtml5Storage() ? localStorage.getItem('load-cookies') : crap.getCookie('load-cookies');
