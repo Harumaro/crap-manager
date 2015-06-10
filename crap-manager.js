@@ -2,7 +2,9 @@ var crap = (function() {
   return {
     options: {
       load_cookies: true,
-      privacy_url: 'http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939'
+      privacy_url: 'http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939',
+      msg_before: 'Su questo sito utilizziamo cookie tecnici e, previo tuo consenso, cookie di profilazione, nostri e di terze parti, per proporti pubblicità in linea con le tue preferenze. Se vuoi saperne di più ',
+      msg_after: '. Cliccando in un punto qualsiasi dello schermo, effettuando un’azione di scroll o chiudendo questo banner, invece, presti il consenso all’uso di tutti i cookie.'
     },
     shouldBlockCookies: function() {
       return !this.options.load_cookies;
@@ -44,7 +46,7 @@ var crap = (function() {
     allowCookies: function(e) {
       e.stopPropagation();
       e.preventDefault();
-
+      
       crap.supportsHtml5Storage() ? localStorage.setItem('load-cookies', false) : crap.setCookie('load-cookies', false, Infinity, '/', '', false);
 
       if (e.type == 'click') {
@@ -61,8 +63,8 @@ var crap = (function() {
     },
     showBanner: function() {
       var _cookie_container = document.createElement('div');
-      var _cookie_text_bef = document.createTextNode('Su questo sito utilizziamo cookie tecnici e, previo tuo consenso, cookie di profilazione, nostri e di terze parti, per proporti pubblicità in linea con le tue preferenze. Se vuoi saperne di più ');
-      var _cookie_text_aft = document.createTextNode('. Cliccando in un punto qualsiasi dello schermo, effettuando un’azione di scroll o chiudendo questo banner, invece, presti il consenso all’uso di tutti i cookie.');
+      var _cookie_text_bef = document.createTextNode(this.options.msg_before);
+      var _cookie_text_aft = document.createTextNode(this.options.msg_after);
       var _cookie_privacy_link = document.createElement('a');
       var _cookie_agree_link = document.createElement('button');
 
