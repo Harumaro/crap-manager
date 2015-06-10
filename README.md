@@ -1,2 +1,2 @@
 # crap-manager
-Cookie banner to comply to italian cookie law.
+**CRAP (Cookie Required? Ask Permission) Manager** is a cookie banner to comply with italian cookie law.
