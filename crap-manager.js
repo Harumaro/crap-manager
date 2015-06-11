@@ -53,6 +53,9 @@ var crap = (function() {
       else
         return false;
     },
+    storeUserPreference: function() {
+      this.supportsHtml5Storage() ? localStorage.setItem('load-cookies', true) : this.setCookie('load-cookies', true, Infinity, '/', '', false);
+    },
     allowCookies: function(e) {
       e.stopPropagation();
       e.preventDefault();
@@ -68,6 +71,7 @@ var crap = (function() {
               if(!confirm(crap.options.msg_alert)) {
                 return;
               }
+              crap.storeUserPreference();
               location.href = link.href;
               return
             }
@@ -86,7 +90,7 @@ var crap = (function() {
           break;
       }
       
-      crap.supportsHtml5Storage() ? localStorage.setItem('load-cookies', true) : crap.setCookie('load-cookies', true, Infinity, '/', '', false);
+      crap.storeUserPreference();
       location.reload();
     },
     showBanner: function() {
