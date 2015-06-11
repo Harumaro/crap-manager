@@ -5,7 +5,8 @@ var crap = (function() {
       click_here: 'clicca qui',
       privacy_url: 'http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939',
       msg_before: 'Su questo sito utilizziamo cookie tecnici e, previo tuo consenso, cookie di profilazione, nostri e di terze parti, per proporti pubblicità in linea con le tue preferenze. Se vuoi saperne di più ',
-      msg_after: '. Cliccando in un punto qualsiasi dello schermo, effettuando un’azione di scroll o chiudendo questo banner, invece, presti il consenso all’uso di tutti i cookie.'
+      msg_after: '. Cliccando in un punto qualsiasi dello schermo, effettuando un’azione di scroll o chiudendo questo banner, invece, presti il consenso all’uso di tutti i cookie.',
+      msg_alert: 'Sei sicuro? Proseguendo la navigazione presterai il consenso all\'uso di tutti i cookie del sito.'
     },
     shouldBlockCookies: function() {
       return !this.options.load_cookies;
@@ -47,6 +48,10 @@ var crap = (function() {
     allowCookies: function(e) {
       e.stopPropagation();
       e.preventDefault();
+      
+      if(!confirm(crap.options.msg_alert)) {
+        return;
+      }
       
       crap.supportsHtml5Storage() ? localStorage.setItem('load-cookies', true) : crap.setCookie('load-cookies', true, Infinity, '/', '', false);
 
