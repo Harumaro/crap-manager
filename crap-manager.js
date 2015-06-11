@@ -45,26 +45,48 @@ var crap = (function() {
       document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
       return true;
     },
+    getLink: function(element) {
+      if(element.tagName === 'A')
+        return element;
+      else if (element.parentNode)
+        return this.getLink(element.parentNode)
+      else
+        return false;
+    },
     allowCookies: function(e) {
       e.stopPropagation();
       e.preventDefault();
       
-      if(!confirm(crap.options.msg_alert)) {
-        return;
+      switch(e.type) {
+        case 'click':
+          link = crap.getLink(e.target);
+          if(link) {
+            if(link.id == 'crap-agree-link') {
+              location.href = link.href;
+              return;
+            } else {
+              if(!confirm(crap.options.msg_alert)) {
+                return;
+              }
+              location.href = link.href;
+              return
+            }
+          }
+          if(e.target.className == 'crap-mgmt-container') {
+            return;
+          }
+          if(!confirm(crap.options.msg_alert)) {
+            return;
+          }
+          break;
+        case 'scroll':
+          if(!confirm(crap.options.msg_alert)) {
+            return;
+          }
+          break;
       }
       
       crap.supportsHtml5Storage() ? localStorage.setItem('load-cookies', true) : crap.setCookie('load-cookies', true, Infinity, '/', '', false);
-
-      if (e.type == 'click') {
-        if(e.target.className == 'cookie-mgmt-container') {
-          return;
-        }
-        if (e.target.nodeName == 'A') {
-          location.href = e.target.href;
-          return;
-        }
-      }
-
       location.reload();
     },
     showBanner: function() {
@@ -75,9 +97,11 @@ var crap = (function() {
       var _cookie_agree_link = document.createElement('button');
 
       _cookie_container.className = 'crap-mgmt-container';
+      _cookie_privacy_link.id = 'crap-agree-link'
       _cookie_privacy_link.href = this.options.privacy_url;
       _cookie_privacy_link.innerText = this.options.click_here;
       _cookie_agree_link.innerText = 'OK';
+      
 
       _cookie_container.appendChild(_cookie_text_bef);
       _cookie_container.appendChild(_cookie_privacy_link);
