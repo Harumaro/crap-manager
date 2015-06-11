@@ -62,7 +62,7 @@ var crap = (function() {
       
       switch(e.type) {
         case 'click':
-          link = crap.getLink(e.target);
+          var link = crap.getLink(e.target);
           if(link) {
             if(link.id == 'crap-agree-link') {
               location.href = link.href;
