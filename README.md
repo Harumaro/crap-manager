@@ -10,6 +10,7 @@ Set the `crap.options` up then load it with `crap.init()` .
 * click_here: privacy link text
 * msg_before: the message before click_here
 * msg_after: the message after click_here
+* msg_alert: the message on the confirmation alert
 
 Use `crap.shouldBlockCookies()` to check whether the user gave their consent and block yours and third-party cookie based stuff.
 
