@@ -7,13 +7,14 @@
 
   <body>
     <h1>Hello Plunker!</h1>
+    <div id="here-be-cookies"></div>
     <script src="script.js"></script>
     <script type="text/javascript">
       crap.init();
-
+      
       if(!crap.shouldBlockCookies()) {
         alert('Me want cookie!');
-        location.href = 'https://www.youtube.com/watch?v=9PnbKL3wuH4';
+        document.getElementById('here-be-cookies').innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/9PnbKL3wuH4" frameborder="0" allowfullscreen></iframe>';
       }
     </script>
   </body>
